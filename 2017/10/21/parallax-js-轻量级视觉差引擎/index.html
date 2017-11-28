@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="parallax," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="osenki" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="多么炫酷的一个效果，对于移动端的支持也挺高的哦。废话不多说，开搞…  首先呢，你要有这个脚本，下载地址：http://matthew.wagerfield.com/parallax/  然后在你的 HTML 中引入就行了，这是最简单的方法喽。 【安装】 当然你也可以 这么安装： npm i -s parallax-js 然后在你的 node_modules/parallax-js/src/par">
+<meta name="keywords" content="parallax">
+<meta property="og:type" content="article">
+<meta property="og:title" content="parallax.js 轻量级视觉差引擎">
+<meta property="og:url" content="osenki.cn/2017/10/21/parallax-js-轻量级视觉差引擎/index.html">
+<meta property="og:site_name" content="osenki">
+<meta property="og:description" content="多么炫酷的一个效果，对于移动端的支持也挺高的哦。废话不多说，开搞…  首先呢，你要有这个脚本，下载地址：http://matthew.wagerfield.com/parallax/  然后在你的 HTML 中引入就行了，这是最简单的方法喽。 【安装】 当然你也可以 这么安装： npm i -s parallax-js 然后在你的 node_modules/parallax-js/src/par">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-10-21T15:38:38.021Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="parallax.js 轻量级视觉差引擎">
+<meta name="twitter:description" content="多么炫酷的一个效果，对于移动端的支持也挺高的哦。废话不多说，开搞…  首先呢，你要有这个脚本，下载地址：http://matthew.wagerfield.com/parallax/  然后在你的 HTML 中引入就行了，这是最简单的方法喽。 【安装】 当然你也可以 这么安装： npm i -s parallax-js 然后在你的 node_modules/parallax-js/src/par">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.2',
+    sidebar: {"position":"right","display":"always","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="osenki.cn/2017/10/21/parallax-js-轻量级视觉差引擎/"/>
+
+
+
+
+
+  <title>parallax.js 轻量级视觉差引擎 | osenki</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+	<a href="https://github.com/568815707/"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">osenki</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">胆大，心细，不断努力。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="osenki.cn/2017/10/21/parallax-js-轻量级视觉差引擎/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="osenki">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="osenki">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">parallax.js 轻量级视觉差引擎</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-21T23:29:26+08:00">
+                2017-10-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/各种插件/" itemprop="url" rel="index">
+                    <span itemprop="name">各种插件</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>多么炫酷的一个效果，对于移动端的支持也挺高的哦。废话不多说，开搞…</p>
+</blockquote>
+<p>首先呢，你要有这个脚本，下载地址：<a href="http://matthew.wagerfield.com/parallax/" target="_blank" rel="external">http://matthew.wagerfield.com/parallax/</a>  然后在你的 HTML 中引入就行了，这是最简单的方法喽。</p>
+<p>【安装】</p>
+<p>当然你也可以 这么安装： <code>npm i -s parallax-js</code></p>
+<p>然后在你的 <code>node_modules/parallax-js/src/parallax.js</code> 中找到就行了。</p>
+<p>【引用】</p>
+<p>如果您使用从版本页面下载或从dist文件夹复制的编译版本，请像其他<code>JavaScript</code>库一样包含脚本：<br><code>&lt;script src=&quot;path/to/parallax.js&quot;&gt;&lt;/script&gt;</code><br>当然，当你通过<code>npm</code>安装并使用<code>browserify / babel</code>，你也可以简单地做：</p>
+<p><code>import Parallax from &#39;parallax-js&#39;</code><br>或<br><code>const Parallax = require(&#39;parallax-js&#39;)</code></p>
+<p>【使用】</p>
+<pre><code>只需创建一个列表，给每个项目要内移动您的视差场景一类层和数据深度属性指定场景内的深度的元素。深度0，将导致层保持静止，深度为1，将导致层移动至所计算的运动的总效应。值插图中0和1，会造成层移动相对于所提供的比例。
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;ul id=&quot;scene&quot;&gt;</div><div class="line">  &lt;li class=&quot;layer&quot; data-depth=&quot;0.00&quot;&gt;&lt;img src=&quot;layer6.png&quot;&gt;&lt;/li&gt;</div><div class="line">  &lt;li class=&quot;layer&quot; data-depth=&quot;0.20&quot;&gt;&lt;img src=&quot;layer5.png&quot;&gt;&lt;/li&gt;</div><div class="line">  &lt;li class=&quot;layer&quot; data-depth=&quot;0.40&quot;&gt;&lt;img src=&quot;layer4.png&quot;&gt;&lt;/li&gt;</div><div class="line">  &lt;li class=&quot;layer&quot; data-depth=&quot;0.60&quot;&gt;&lt;img src=&quot;layer3.png&quot;&gt;&lt;/li&gt;</div><div class="line">  &lt;li class=&quot;layer&quot; data-depth=&quot;0.80&quot;&gt;&lt;img src=&quot;layer2.png&quot;&gt;&lt;/li&gt;</div><div class="line">  &lt;li class=&quot;layer&quot; data-depth=&quot;1.00&quot;&gt;&lt;img src=&quot;layer1.png&quot;&gt;&lt;/li&gt;</div><div class="line">&lt;/ul&gt;</div></pre></td></tr></table></figure>
+</code></pre><p>如果你不用 <code>ul</code> 你也可以使用 <code>div</code> 作为容器哦，当然你的父容器 <code>id</code> 名一定要是 <code>scene</code> ，其子容器的 <code>class</code> 类名为 <code>layer</code> 。<code>data-depth</code> 代表着深度。这个属性一定要有哦。</p>
+<p>视差场景，请选择您的父DOM元素，并把它传递给视差的构造函数。这个直接在你的 <code>scrip</code>t 标签中写就 ok 了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var scene = document.getElementById(&apos;scene&apos;);</div><div class="line">var parallax = new Parallax(scene);</div></pre></td></tr></table></figure>
+<p>【参数】</p>
+<p>参数                                      值                                                 描述<br>relativeInput                         true 或false                 Specifies whether or not to use the coordinate system of the element passed to the parallax constructor. Mouse input only</p>
+<p>clipRelativeInput                     true 或false                 Specifies whether or not to clip the mouse input to the bounds of the element passed to the parallax constructor. Mouse input only</p>
+<p>calibrate-x                           true 或false                 指定是否根据初始时x轴的值来计算运动量</p>
+<p>calibrate-y                           true 或false                 指定是否根据初始时y轴的值来计算运动量</p>
+<p>invert-x                              true 或false                 设置为true则按反方向运动层</p>
+<p>invert-y                              true 或false                 设置为true则按反方向运动层</p>
+<p>limit-x                               number 或false               x方向上总的运动量数值范围，设置为false则允许层自由运动</p>
+<p>limit-y                               number 或false               y方向上总的运动量数值范围，设置为false则允许层自由运动</p>
+<p>scalar-x                              number                       输入的运动量和这个值相乘，增加或减少层运动的灵敏度</p>
+<p>scalar-y                              number                       输入的运动量和这个值相乘，增加或减少层运动的灵敏度</p>
+<p>friction-x                            number 0-1                   层运动的摩擦量，实际上是在层上添加一些easing效果</p>
+<p>friction-y                            number 0-1                   层运动的摩擦量，实际上是在层上添加一些easing效果</p>
+<p>origin-x                              number                       鼠标输入的x原点，默认值是0.5。0会移动原点到页面的左边，1会移动原点到页面的右边。Mouse input only</p>
+<p>origin-y                              number                       鼠标输入的x原点，默认值是0.5。0会移动原点到页面的上边，1会移动原点到页面的下边。Mouse input only</p>
+<p>当然在使用这些单数的前边要加 data-  哦！！</p>
+<p>【使用参数例子】</p>
+<p>行为：数据属性的例子</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">&lt;ul id=&quot;scene&quot;</div><div class="line">  data-calibrate-x=&quot;false&quot;</div><div class="line">  data-calibrate-y=&quot;true&quot;</div><div class="line">  data-invert-x=&quot;false&quot;</div><div class="line">  data-invert-y=&quot;true&quot;</div><div class="line">  data-limit-x=&quot;false&quot;</div><div class="line">  data-limit-y=&quot;10&quot;</div><div class="line">  data-scalar-x=&quot;2&quot;</div><div class="line">  data-scalar-y=&quot;8&quot;</div><div class="line">  data-friction-x=&quot;0.2&quot;</div><div class="line">  data-friction-y=&quot;0.8&quot;&gt;</div><div class="line">  &lt;li class=&quot;layer&quot; data-depth=&quot;0.00&quot;&gt;&lt;img src=&quot;graphics/layer6.png&quot;&gt;&lt;/li&gt;</div><div class="line">  &lt;li class=&quot;layer&quot; data-depth=&quot;0.20&quot;&gt;&lt;img src=&quot;graphics/layer5.png&quot;&gt;&lt;/li&gt;</div><div class="line">  &lt;li class=&quot;layer&quot; data-depth=&quot;0.40&quot;&gt;&lt;img src=&quot;graphics/layer4.png&quot;&gt;&lt;/li&gt;</div><div class="line">  &lt;li class=&quot;layer&quot; data-depth=&quot;0.60&quot;&gt;&lt;img src=&quot;graphics/layer3.png&quot;&gt;&lt;/li&gt;</div><div class="line">  &lt;li class=&quot;layer&quot; data-depth=&quot;0.80&quot;&gt;&lt;img src=&quot;graphics/layer2.png&quot;&gt;&lt;/li&gt;</div><div class="line">  &lt;li class=&quot;layer&quot; data-depth=&quot;1.00&quot;&gt;&lt;img src=&quot;graphics/layer1.png&quot;&gt;&lt;/li&gt;</div><div class="line">&lt;/ul&gt;</div></pre></td></tr></table></figure>
+<p>行为：构造函数对象实例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">var scene = document.getElementById(&apos;scene&apos;);</div><div class="line">var parallax = new Parallax(scene, &#123;</div><div class="line">  calibrateX: false,</div><div class="line">  calibrateY: true,</div><div class="line">  invertX: false,</div><div class="line">  invertY: true,</div><div class="line">  limitX: false,</div><div class="line">  limitY: 10,</div><div class="line">  scalarX: 2,</div><div class="line">  scalarY: 8,</div><div class="line">  frictionX: 0.2,</div><div class="line">  frictionY: 0.8</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>行为：API示例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var scene = document.getElementById(&apos;scene&apos;);</div><div class="line">var parallax = new Parallax(scene);</div><div class="line">parallax.enable();</div><div class="line">parallax.disable();</div><div class="line">parallax.calibrate(false, true);</div><div class="line">parallax.invert(false, true);</div><div class="line">parallax.limit(false, 10);</div><div class="line">parallax.scalar(2, 8);</div><div class="line">parallax.friction(0.2, 0.8);</div></pre></td></tr></table></figure>
+<p>jQuery的：传递选项</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">$(&apos;#scene&apos;).parallax(&#123;</div><div class="line">  calibrateX: false,</div><div class="line">  calibrateY: true,</div><div class="line">  invertX: false,</div><div class="line">  invertY: true,</div><div class="line">  limitX: false,</div><div class="line">  limitY: 10,</div><div class="line">  scalarX: 2,</div><div class="line">  scalarY: 8,</div><div class="line">  frictionX: 0.2,</div><div class="line">  frictionY: 0.8</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>jQuery API</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var $scene = $(&apos;#scene&apos;).parallax();</div><div class="line">$scene.parallax(&apos;enable&apos;);</div><div class="line">$scene.parallax(&apos;disable&apos;);</div><div class="line">$scene.parallax(&apos;calibrate&apos;, false, true);</div><div class="line">$scene.parallax(&apos;invert&apos;, false, true);</div><div class="line">$scene.parallax(&apos;limit&apos;, false, 10);</div><div class="line">$scene.parallax(&apos;scalar&apos;, 2, 8);</div><div class="line">$scene.parallax(&apos;friction&apos;, 0.2, 0.8);</div></pre></td></tr></table></figure>
+<blockquote>
+<p>就这些啦，欢快的使用吧。</p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+	<div>
+		
+		<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+		
+	</div>
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/parallax/" <i class="fa fa-tag"></i> parallax</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/15/首秀直播-App-感受分享/" rel="next" title="首秀直播 App 感受分享">
+                <i class="fa fa-chevron-left"></i> 首秀直播 App 感受分享
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image"
+              src="/images/avatar.png"
+              alt="osenki" />
+          
+            <p class="site-author-name" itemprop="name">osenki</p>
+            <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives/">
+            
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://568815707.github.io/osen.github.io/" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:568815707@qq.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://my.oschina.net/Osen/blog" target="_blank" title="开源中国">
+                  
+                    <i class="fa fa-fw fa-globe"></i>开源中国</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://blog.csdn.net/qq_19238139" target="_blank" title="CSDN">
+                  
+                    <i class="fa fa-fw fa-globe"></i>CSDN</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://juejin.im/user/59a3e4dff265da2480335161" target="_blank" title="掘金">
+                  
+                    <i class="fa fa-fw fa-globe"></i>掘金</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://segmentfault.com/u/kingxiaohai" target="_blank" title="SegmentFault">
+                  
+                    <i class="fa fa-fw fa-globe"></i>SegmentFault</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/users/19de76098ed1/timeline" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-globe"></i>简书</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">osenki</span>
+
+  
+</div>
+
+
+  <div class="powered-by">
+  <i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+    本站访客数:<span id="busuanzi_value_site_uv"></span>
+  </span>
+  </div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>

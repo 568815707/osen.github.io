@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="React," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="osenki" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="抽奖活动的主要流程。（ps：移动端哦）  1、前端控制翻牌效果。 2、服务端控制主要参数。 3、MySql存储信息。 在这里我只介绍步骤1了，也就是前端部分。如果童鞋们的公司分工明确的话，你们用到步骤1的部分就ok 了。                                          首先呢，我强调一下，我做这个效果使用的框架是 react 框架。要想做到卡牌翻牌效果，首先你需">
+<meta name="keywords" content="React">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React翻牌抽奖">
+<meta property="og:url" content="osenki.cn/2017/09/22/React翻牌抽奖/index.html">
+<meta property="og:site_name" content="osenki">
+<meta property="og:description" content="抽奖活动的主要流程。（ps：移动端哦）  1、前端控制翻牌效果。 2、服务端控制主要参数。 3、MySql存储信息。 在这里我只介绍步骤1了，也就是前端部分。如果童鞋们的公司分工明确的话，你们用到步骤1的部分就ok 了。                                          首先呢，我强调一下，我做这个效果使用的框架是 react 框架。要想做到卡牌翻牌效果，首先你需">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://ow03felam.bkt.clouddn.com/%E6%8A%BD%E5%A5%96%E6%95%88%E6%9E%9C.gif">
+<meta property="og:updated_time" content="2017-09-22T11:32:08.800Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="React翻牌抽奖">
+<meta name="twitter:description" content="抽奖活动的主要流程。（ps：移动端哦）  1、前端控制翻牌效果。 2、服务端控制主要参数。 3、MySql存储信息。 在这里我只介绍步骤1了，也就是前端部分。如果童鞋们的公司分工明确的话，你们用到步骤1的部分就ok 了。                                          首先呢，我强调一下，我做这个效果使用的框架是 react 框架。要想做到卡牌翻牌效果，首先你需">
+<meta name="twitter:image" content="http://ow03felam.bkt.clouddn.com/%E6%8A%BD%E5%A5%96%E6%95%88%E6%9E%9C.gif">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.2',
+    sidebar: {"position":"right","display":"always","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="osenki.cn/2017/09/22/React翻牌抽奖/"/>
+
+
+
+
+
+  <title>React翻牌抽奖 | osenki</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+	<a href="https://github.com/568815707/"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">osenki</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">胆大，心细，不断努力。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="osenki.cn/2017/09/22/React翻牌抽奖/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="osenki">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="osenki">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">React翻牌抽奖</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-22T19:23:14+08:00">
+                2017-09-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/React移动端/" itemprop="url" rel="index">
+                    <span itemprop="name">React移动端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>抽奖活动的主要流程。（ps：移动端哦）</p>
+</blockquote>
+<p>1、前端控制翻牌效果。</p>
+<p>2、服务端控制主要参数。</p>
+<p>3、MySql存储信息。</p>
+<p>在这里我只介绍步骤1了，也就是前端部分。如果童鞋们的公司分工明确的话，你们用到步骤1的部分就ok 了。</p>
+<p><img src="http://ow03felam.bkt.clouddn.com/%E6%8A%BD%E5%A5%96%E6%95%88%E6%9E%9C.gif" alt="">                                        </p>
+<p>首先呢，我强调一下，我做这个效果使用的框架是 <code>react</code> 框架。要想做到卡牌翻牌效果，首先你需要有两张图片，我们先说一下在用户未中奖的状态。一张翻牌的图片，一张未中奖的图片。前端代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">constructor (props) &#123;</div><div class="line"></div><div class="line">  super(props)</div><div class="line"></div><div class="line">  this.state = &#123;</div><div class="line"></div><div class="line">    count: window.CONFIG.count,</div><div class="line"></div><div class="line">    haveGift: &apos;&apos;,</div><div class="line"></div><div class="line">    back: false</div><div class="line"></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  this.choice = this.choice.bind(this)</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这是我们的<code>constructor</code> 部分。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">choice () &#123;</div><div class="line"></div><div class="line">     this.setState(&#123;back：true&#125;)</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这是我们绑定的抽奖事件。</p>
+<p><code>count</code> 代表抽奖的次数，这个 <code>count</code> 是我在服务端设置的并且挂在到了 <code>window.CONFIG</code>上，所以我们前端部分直接在 <code>window.CONFIG</code>上获取就行了。在服务端我设置了每人一次的抽奖机会。所以凡是打开该页面的人，都会拥有一次抽奖的机会。</p>
+<p><code>haveGift</code> 代表获得礼物。服务端返回来的是一个值，前端把这个值对应上各自的礼物就行了。</p>
+<p><code>back</code> 代表翻牌的效果值，初始给他一个 <code>false</code> 代表他为翻转，如果为 <code>true</code> 则为翻转之后的效果，我们通过绑定一个 <code>click</code> 事件来改变 <code>back</code> 的值，从而实现牌子的翻转效果。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">&lt;div className = ’show&apos;&gt;</div><div class="line"></div><div class="line">    &lt;div className = &#123;this.state.back ? &apos;flipped&apos; : &apos;&apos; &#125; onClick=&#123;this.choice&#125;&gt;</div><div class="line"></div><div class="line">        &lt;div className=&apos;front&apos;&gt;</div><div class="line"></div><div class="line">                        &lt;img src=&#123;require(`../img/raffle-win.png`)&#125;/&gt;</div><div class="line"></div><div class="line">                 &lt;/div&gt;</div><div class="line"></div><div class="line">        &lt;div className=&apos;front&apos;&gt;</div><div class="line"></div><div class="line">                        &lt;img src=&#123;require(`../img/raffle-lose.png`)&#125;/&gt;</div><div class="line"></div><div class="line">                 &lt;/div&gt;</div><div class="line"></div><div class="line">    &lt;/div&gt;</div><div class="line"></div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+<p>类名为 <code>.show</code> 的 div 将会用于制作3D空间， <code>.filpped</code> 的 div 作为3D对象的包装器，它里面有两个单独的 div 元素时卡片的正反两面。第二个 div 的类名使用了三元判断，相当于 <code>if..else..</code>语句。通过判断 <code>this.state.back</code> 的真假来调用不同的类名，当然 <code>flipped</code> 这个类就是会让卡牌翻转的类名。下面会有相应的 css 代码哦。</p>
+<p>（如果你不想放入图片，你也可以在 div 里面输入文字来进行抽奖效果。按照抽奖的通常效果来说，如果中奖的话，会有提示，输入手机号之类的，从而进而领奖。当然你也可以在类名为<code>back</code> 的 div 中添加 <code>&lt;input&gt;</code> 输入框。自己脑洞打开，随你喽。）</p>
+<p>下面我们为它们添加样式，首先给 3D 空间元素 <code>.show</code> 一个 相对定位方式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">.show&#123;</div><div class="line"></div><div class="line">  position: relative;</div><div class="line"></div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>在我对网上的一些相关调查来看， 有的博文上说需要添加 <code>perspective</code> 属性，给他一个3D空间的大小，但是不知道为什么在我使用 React 框架中添加了这个属性之后反而不好使了。这确实是一个坑啊。如果其他童鞋用到的，你们可以尝试一下。看看行不行。 记得 <code>perspective</code> 要有兼容性的。</p>
+<p>接下来我们用 <code>css3</code> <code>transitio</code>n 来添加一些过度效果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">.flipped&#123;</div><div class="line"></div><div class="line">  width: 100%;</div><div class="line"></div><div class="line">  height: 100%;</div><div class="line"></div><div class="line">  position: absolute;</div><div class="line"></div><div class="line">  transform-style: preserve-3d;</div><div class="line"></div><div class="line">  transition: transform 1s;</div><div class="line"></div><div class="line">  transform: rotateY( 180deg );</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><code>transform</code> 这三个属性，不懂得童鞋自行搜索喽。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">.front&#123;</div><div class="line"></div><div class="line">  height: 2.2rem;</div><div class="line"></div><div class="line">  display: block;</div><div class="line"></div><div class="line">  position: absolute;</div><div class="line"></div><div class="line">  width: 100%;</div><div class="line"></div><div class="line">  backface-visibility: hidden;</div><div class="line"></div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>这个是翻牌那一层 div</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">.back&#123;</div><div class="line"></div><div class="line">  height: 2.2rem;</div><div class="line"></div><div class="line">  width: 100%;</div><div class="line"></div><div class="line">  display: block;</div><div class="line"></div><div class="line">  position: absolute;</div><div class="line"></div><div class="line">  backface-visibility: hidden;</div><div class="line"></div><div class="line">  transform: rotateY( 180deg );</div><div class="line"></div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>这是牌子下一层 div。</p>
+<p>在 <code>HTML</code> 代码中特意设置了两个 div ，想一想哈，如果想通过一个div 实现翻转效果这个当然是很简单的啦，更换图片就行了。那我们中奖的效果呢？礼物有好多呢？总不能让 UI 给你做 N 张 多态图吧。显然是不可能的，所以就需要我们在服务端传入多种礼物值，然后在前端进行转换，在 div 中显示。这是其一。其二呢，目前大部分的抽奖翻牌效果都是，中奖后会出现一个弹框，让你输入领奖手机号之类的。如果再搞一个弹框，多麻烦。如果按照我这种设计方法呢，就不用加入弹框了。我们只需要在 <code>.back</code> 的 div 中添加一个<code>input</code> 输入框就行了。提交时我们仍然绑定上事件，把输入的值连接到 URL 上传给服务端。再通过服务端使用 SQL 语句将输入的值保存到数据库中。</p>
+<p>好啦，到此我们前端的一个 react 框架抽奖效果就结束啦。如有疑问可以加我 qq ，联系我哦。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+	<div>
+		
+		<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+		
+	</div>
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/React/" <i class="fa fa-tag"></i> React</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/09/09/PWA-Progressive-Web-App/" rel="next" title="PWA(Progressive Web App)">
+                <i class="fa fa-chevron-left"></i> PWA(Progressive Web App)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/15/Share-to-Facebook-javascript版/" rel="prev" title="Share to Facebook (javascript版)">
+                Share to Facebook (javascript版) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image"
+              src="/images/avatar.png"
+              alt="osenki" />
+          
+            <p class="site-author-name" itemprop="name">osenki</p>
+            <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives/">
+            
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://568815707.github.io/osen.github.io/" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:568815707@qq.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://my.oschina.net/Osen/blog" target="_blank" title="开源中国">
+                  
+                    <i class="fa fa-fw fa-globe"></i>开源中国</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://blog.csdn.net/qq_19238139" target="_blank" title="CSDN">
+                  
+                    <i class="fa fa-fw fa-globe"></i>CSDN</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://juejin.im/user/59a3e4dff265da2480335161" target="_blank" title="掘金">
+                  
+                    <i class="fa fa-fw fa-globe"></i>掘金</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://segmentfault.com/u/kingxiaohai" target="_blank" title="SegmentFault">
+                  
+                    <i class="fa fa-fw fa-globe"></i>SegmentFault</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/users/19de76098ed1/timeline" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-globe"></i>简书</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">osenki</span>
+
+  
+</div>
+
+
+  <div class="powered-by">
+  <i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+    本站访客数:<span id="busuanzi_value_site_uv"></span>
+  </span>
+  </div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
