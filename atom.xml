@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="osenki.cn/"/>
-  <updated>2017-10-21T15:38:38.021Z</updated>
+  <updated>2017-11-28T13:16:43.492Z</updated>
   <id>osenki.cn/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Hexo 部署失败问题</title>
+    <link href="osenki.cn/2017/11/28/Hexo-%E9%83%A8%E7%BD%B2%E5%A4%B1%E8%B4%A5%E9%97%AE%E9%A2%98/"/>
+    <id>osenki.cn/2017/11/28/Hexo-部署失败问题/</id>
+    <published>2017-11-28T12:55:08.000Z</published>
+    <updated>2017-11-28T13:16:43.492Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>今天‘捯饬’博客，部署的时候出现一个自我感觉很奇葩的问题，在各大社区搜索也没有搜索到，话不多说上图片：</p></blockquote><p><img src="http://ow03felam.bkt.clouddn.com/LU0DP%5BL4H%25%297C6ISH@X~C9P.png" alt=""></p><p>看见这个问题的所在了吧，他竟然告诉我一个关于本地时间与服务器时间不对的问题。哎，我也是不懂了，为啥会出现这个问题。百度也不行，在各大社区 search 了一下也没有找到问题的所在之处。虽然图片上下文已经告诉我让我去哪里查解决问题的所在网址了，但是我查看以后，发现竟然都是关于 jekyll 搭建博客出现的问题解决方式。我当时就好无语。。（ps：难道就没有个关于 Hexo 的解决问题么！）</p><p>还是继续搜索下去吧，在 Stack Overflow 社区中有一篇文章吸引了我的注意力，其中回答者给出的一个答案是把一个文件删除了，然后重新部署。瞬间灵感来了，决定操作试一下。看下图：</p><p><img src="http://ow03felam.bkt.clouddn.com/%7BH%7D6XHOU8OU~F%29%7B2RF%25%259GY.png" alt=""> </p><p>我们直接把这个文件删除了！</p><p>然后执行代码 <code>hexo clean</code> -&gt; <code>hexo g</code> -&gt; <code>hexo s</code>(预览一下看看本地效果) -&gt; <code>hexo d</code> 。</p><p>好，奇迹发生了。部署成功啦。。是不是好开森。</p><p>一般其他的部署失败问题我就不说了，毕竟都能够通过度娘找到的，在度娘上找不到的也能在其他的社区找到答案的，好啦，开始你的 Hexo 之旅吧。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;今天‘捯饬’博客，部署的时候出现一个自我感觉很奇葩的问题，在各大社区搜索也没有搜索到，话不多说上图片：&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&quot;http://ow03felam.bkt.clouddn.com/LU0DP%5B
+      
+    
+    </summary>
+    
+      <category term="Hexo" scheme="osenki.cn/categories/Hexo/"/>
+    
+    
+      <category term="Hexo" scheme="osenki.cn/tags/Hexo/"/>
+    
+  </entry>
   
   <entry>
     <title>parallax.js 轻量级视觉差引擎</title>
