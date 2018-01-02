@@ -104,18 +104,18 @@
 
 
 
-<meta name="description" content="最近在项目中，因为 Qconf 出现了一些问题。于是瞎搞一通，创建了一些配置文件，改乱了一些系统权限。还好，自己都改回来了。对了，我这边是  OSX 系统的，并且是通过 NodeJs 进行的部署。  1、什么是 Qconf   Qconf 是奇虎360广泛使用的配置管理服务。致力于将配置内容从代码中完全分离出来，及时可靠高效的提供配置访问和更新服务。 2、为什么要用它   在我们开发的流程中，如">
+<meta name="description" content="最近在项目中，因为 Qconf 出现了一些问题。于是瞎搞一通，创建了一些配置文件，改乱了一些系统权限。还好，自己都改回来了。对了，我这边是  OSX 系统的，并且是通过 NodeJs 进行的部署。  1、什么是 Qconf Qconf 是奇虎360广泛使用的配置管理服务。致力于将配置内容从代码中完全分离出来，及时可靠高效的提供配置访问和更新服务。 2、为什么要用它 在我们开发的流程中，如果是分布">
 <meta name="keywords" content="Qconf">
 <meta property="og:type" content="article">
 <meta property="og:title" content="浅谈Qconf以及遇到的问题">
 <meta property="og:url" content="osenki.cn/2017/12/20/浅谈Qconf以及遇到的问题/index.html">
 <meta property="og:site_name" content="osenki">
-<meta property="og:description" content="最近在项目中，因为 Qconf 出现了一些问题。于是瞎搞一通，创建了一些配置文件，改乱了一些系统权限。还好，自己都改回来了。对了，我这边是  OSX 系统的，并且是通过 NodeJs 进行的部署。  1、什么是 Qconf   Qconf 是奇虎360广泛使用的配置管理服务。致力于将配置内容从代码中完全分离出来，及时可靠高效的提供配置访问和更新服务。 2、为什么要用它   在我们开发的流程中，如">
+<meta property="og:description" content="最近在项目中，因为 Qconf 出现了一些问题。于是瞎搞一通，创建了一些配置文件，改乱了一些系统权限。还好，自己都改回来了。对了，我这边是  OSX 系统的，并且是通过 NodeJs 进行的部署。  1、什么是 Qconf Qconf 是奇虎360广泛使用的配置管理服务。致力于将配置内容从代码中完全分离出来，及时可靠高效的提供配置访问和更新服务。 2、为什么要用它 在我们开发的流程中，如果是分布">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-19T16:22:12.812Z">
+<meta property="og:updated_time" content="2018-01-02T15:58:28.601Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浅谈Qconf以及遇到的问题">
-<meta name="twitter:description" content="最近在项目中，因为 Qconf 出现了一些问题。于是瞎搞一通，创建了一些配置文件，改乱了一些系统权限。还好，自己都改回来了。对了，我这边是  OSX 系统的，并且是通过 NodeJs 进行的部署。  1、什么是 Qconf   Qconf 是奇虎360广泛使用的配置管理服务。致力于将配置内容从代码中完全分离出来，及时可靠高效的提供配置访问和更新服务。 2、为什么要用它   在我们开发的流程中，如">
+<meta name="twitter:description" content="最近在项目中，因为 Qconf 出现了一些问题。于是瞎搞一通，创建了一些配置文件，改乱了一些系统权限。还好，自己都改回来了。对了，我这边是  OSX 系统的，并且是通过 NodeJs 进行的部署。  1、什么是 Qconf Qconf 是奇虎360广泛使用的配置管理服务。致力于将配置内容从代码中完全分离出来，及时可靠高效的提供配置访问和更新服务。 2、为什么要用它 在我们开发的流程中，如果是分布">
 
 
 
@@ -382,52 +382,30 @@
 <p>最近在项目中，因为 Qconf 出现了一些问题。于是瞎搞一通，创建了一些配置文件，改乱了一些系统权限。还好，自己都改回来了。对了，我这边是  OSX 系统的，并且是通过 NodeJs 进行的部署。</p>
 </blockquote>
 <p>1、什么是 Qconf</p>
-<p>  Qconf 是奇虎360广泛使用的配置管理服务。致力于将配置内容从代码中完全分离出来，及时可靠高效的提供配置访问和更新服务。</p>
+<p>Qconf 是奇虎360广泛使用的配置管理服务。致力于将配置内容从代码中完全分离出来，及时可靠高效的提供配置访问和更新服务。</p>
 <p>2、为什么要用它</p>
-<p>  在我们开发的流程中，如果是分布式环境，那么几乎所有的服务都需要在不同的机器节点上部署多个实例，业务中总少不了各种类型的配置文件的，那么，我们有时候会根据业务的需求更改配置内容。所以我们还需要重新进行代码提交，打包，分发上线。如果有很多台机器要部署，分发上线会很麻烦。而配置文件的修改频率又远远大于代码本身。所以，我们需要一个对配置和代码的管理、发布管理系统。因此我们使用 Qconf （分布式配置管理系统）。</p>
+<p>在我们开发的流程中，如果是分布式环境，那么几乎所有的服务都需要在不同的机器节点上部署多个实例，业务中总少不了各种类型的配置文件的，那么，我们有时候会根据业务的需求更改配置内容。所以我们还需要重新进行代码提交，打包，分发上线。如果有很多台机器要部署，分发上线会很麻烦。而配置文件的修改频率又远远大于代码本身。所以，我们需要一个对配置和代码的管理、发布管理系统。因此我们使用 Qconf （分布式配置管理系统）。</p>
 <p>3、Qconf 对配置的定位</p>
-<pre><code>-单条数据量小
--更新频繁（较代码而言）
--配置总数可能巨大，但单台机器关心配置数有限
--读多写少
-</code></pre><p>4、使用方式：</p>
-<pre><code>-简单配置 公司内使用最广泛的用法，QConf非常适合经常需要变动的配置使用，如开关信息、版本信息、推荐信息、超时时间等。
-
--服务方式 这种方式多被服务提供者采用，如dba，系统部等，采用上述的服务配置的方式，通过QConf向公司的所有业务提供存储，计算及web服务。
-</code></pre><p>5、Qconf 安装：</p>
-<pre><code>-`git clone https://github.com/Qihoo360/QConf.git`
--`cd QConf &amp;&amp; mkdir build &amp;&amp; cd build &amp;&amp; cmake ..`
--如果 `cmake ..` 报错，那么直接在 `cmake ..` 一遍就行了
--`make`
--`make install`
--安装完成之后默认的路径是 /usr/local/qconf
-</code></pre><p>   Tips：在安装的过程中有可能会失败，其中有可能是由于使用权限（permissions）问题，那么我们直接在 <code>sudo -s</code> 下安装就行了。</p>
+<p>-单条数据量小<br>-更新频繁（较代码而言）<br>-配置总数可能巨大，但单台机器关心配置数有限<br>-读多写少</p>
+<p>4、使用方式：</p>
+<p>-简单配置 公司内使用最广泛的用法，QConf非常适合经常需要变动的配置使用，如开关信息、版本信息、推荐信息、超时时间等。</p>
+<p>-服务方式 这种方式多被服务提供者采用，如dba，系统部等，采用上述的服务配置的方式，通过QConf向公司的所有业务提供存储，计算及web服务。</p>
+<p>5、Qconf 安装：</p>
+<p>-<code>git clone https://github.com/Qihoo360/QConf.git</code><br>-<code>cd QConf &amp;&amp; mkdir build &amp;&amp; cd build &amp;&amp; cmake ..</code><br>-如果 <code>cmake ..</code> 报错，那么直接在 <code>cmake ..</code> 一遍就行了<br>-<code>make</code><br>-<code>make install</code><br>-安装完成之后默认的路径是 /usr/local/qconf</p>
+<p>Tips：在安装的过程中有可能会失败，其中有可能是由于使用权限（permissions）问题，那么我们直接在 <code>sudo -s</code> 下安装就行了。</p>
 <p>6、 启动 Qconf</p>
-<pre><code>-`cd /usr/local/qconf`
--`cd bin &amp;&amp; sh qconf_agent.sh start`
-</code></pre><p>8、安装 node-qconf</p>
-<pre><code>-设置环境变量 `.bashrc/.zshrc/…`
-    `export QCONF_INSTALL=/usr/local/qconf
--`npm install node-qconf`
-</code></pre><p>7、遇到的一些问题：</p>
-<pre><code> -使用 Qconf 需要调整共享内存的限制，为什么修改呢？或许在你 `npm start` 项目时候会报错 `Failed to init qconf! ret:201` 。
+<p>-<code>cd /usr/local/qconf</code><br>-<code>cd bin &amp;&amp; sh qconf_agent.sh start</code></p>
+<p>8、安装 node-qconf</p>
+<p>-设置环境变量 <code>.bashrc/.zshrc/…</code><br>    <code>export QCONF_INSTALL=/usr/local/qconf
+-</code>npm install node-qconf`</p>
+<p>7、遇到的一些问题：</p>
+<p>-使用 Qconf 需要调整共享内存的限制，为什么修改呢？或许在你 <code>npm start</code> 项目时候会报错 <code>Failed to init qconf! ret:201</code> 。</p>
+<p>通过 <code>sysctl -a | grep shm</code> 查看当前的共享内存上限的大小，如果不足 2G 那么进行下边的操作：</p>
+<p><code>sysctl kern.sysv.shmmax=2048000000</code><br><code>sysctl kern.sysv.shmall=1073741824</code></p>
+<p>Tips: 执行的时候有可能报权限（permissions）问题，直接在 <code>sudo -s</code> 下执行。<br>      有的博客上在改动 <code>shmall</code> 的大小为 4294967296。这也没错，只不过不知道为什么，我的电脑设置这个值得时候，设置不成功，或许是我的共享内存页大小不够。所以我设置的值是在 Linux 下的共享内存限制。（linux 共享内存也的大小为4kb 所以除以 4 就行了）<br>-在 <code>./agent-cmd.sh start</code> 提示 <code>./agent-cmd.sh: line 355: flock: command not found</code></p>
+<p>执行下边操作：</p>
+<p>-cd /usr/local/qconf/bin<br>-vim agent-cmd.sh<br>-:set number （vim编辑器会显示行数的）<br>-找到 355 行，将 flock 哪一行注释掉。保存退出即可</p>
 
-通过 `sysctl -a | grep shm` 查看当前的共享内存上限的大小，如果不足 2G 那么进行下边的操作：
-
-`sysctl kern.sysv.shmmax=2048000000`
-`sysctl kern.sysv.shmall=1073741824`
-
-Tips: 执行的时候有可能报权限（permissions）问题，直接在 `sudo -s` 下执行。
-      有的博客上在改动 `shmall` 的大小为 4294967296。这也没错，只不过不知道为什么，我的电脑设置这个值得时候，设置不成功，或许是我的共享内存页大小不够。所以我设置的值是在 Linux 下的共享内存限制。（linux 共享内存也的大小为4kb 所以除以 4 就行了）               
--在 `./agent-cmd.sh start` 提示 `./agent-cmd.sh: line 355: flock: command not found` 
-
-执行下边操作：
-
- -cd /usr/local/qconf/bin
- -vim agent-cmd.sh    
- -:set number （vim编辑器会显示行数的）
- -找到 355 行，将 flock 哪一行注释掉。保存退出即可
-</code></pre>
       
     </div>
     
@@ -475,6 +453,10 @@ Tips: 执行的时候有可能报权限（permissions）问题，直接在 `sudo
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/01/02/2017年终总结/" rel="prev" title="2017年终总结">
+                2017年终总结 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -545,7 +527,7 @@ Tips: 执行的时候有可能报权限（permissions）问题，直接在 `sudo
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -567,7 +549,7 @@ Tips: 执行的时候有可能报权限（permissions）问题，直接在 `sudo
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -661,7 +643,7 @@ Tips: 执行的时候有可能报权限（permissions）问题，直接在 `sudo
 <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
